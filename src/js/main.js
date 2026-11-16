@@ -617,4 +617,16 @@
       };
     });
   }
+  // ---------- 7. What we do: the three cards rise in one after another ----------
+  var svcCards = gsap.utils.toArray(".svc__card");
+  if (svcCards.length && window.matchMedia("(prefers-reduced-motion: no-preference)").matches) {
+    gsap.set(svcCards, { y: 60, opacity: 0 });
+    ScrollTrigger.batch(svcCards, {
+      start: "top 85%",
+      once: true,
+      onEnter: function (batch) {
+        gsap.to(batch, { y: 0, opacity: 1, duration: 1.2, ease: "expo.out", stagger: 0.15, clearProps: "opacity,transform" });
+      },
+    });
+  }
 })();

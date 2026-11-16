@@ -1041,3 +1041,218 @@ h1 .line > span {
     line-height: 1.45;
   }
 }
+
+/* ---------- 11. What we do: three ways to work with us ---------- */
+.svc {
+  background: var(--tint);
+  padding: 9rem 0 10rem;
+}
+
+.svc__inner {
+  width: var(--wrap);
+  margin: 0 auto;
+}
+
+.svc__eyebrow {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.75rem;
+}
+
+.svc__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 3rem;
+  margin-bottom: 4.5rem;
+}
+
+.svc h2 {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: clamp(2.2rem, 3.6vw, 3.25rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--primary);
+  max-width: 14ch;
+}
+
+.svc__intro {
+  max-width: 26rem;
+  font-size: 1.125rem;
+  line-height: 1.55;
+  color: var(--text-soft);
+}
+
+.svc__cards {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.svc__card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 2.5rem 2.25rem 2.75rem;
+  background: var(--white);
+  border-radius: 1.25rem;
+  box-shadow: 0 0.5rem 2rem oklch(27.7% 0.087 308 / 0.06);
+  overflow: hidden;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* the accent line that grows across the top on hover */
+.svc__card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 0.25rem;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.svc__card--dark {
+  background: var(--primary);
+  color: var(--white);
+}
+
+.svc__num {
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin-bottom: 3.5rem;
+}
+
+.svc__card--dark .svc__num {
+  color: var(--tint);
+}
+
+.svc h3 {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--primary);
+  margin-bottom: 0.875rem;
+}
+
+.svc__card--dark h3 {
+  color: var(--white);
+}
+
+.svc__line {
+  font-size: 1.125rem;
+  line-height: 1.45;
+  color: var(--text);
+  margin-bottom: 1.5rem;
+}
+
+.svc__card--dark .svc__line {
+  color: var(--tint);
+}
+
+.svc__for {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--text-soft);
+  padding-bottom: 1.75rem;
+  margin-bottom: 1.75rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.svc__for b {
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.svc__card--dark .svc__for {
+  color: var(--muted);
+  border-color: oklch(100% 0 0 / 0.16);
+}
+
+.svc__card--dark .svc__for b {
+  color: var(--white);
+}
+
+.svc__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.875rem;
+}
+
+.svc__list li {
+  display: flex;
+  gap: 0.75rem;
+  font-size: 1rem;
+  line-height: 1.45;
+  color: var(--text-soft);
+}
+
+.svc__list svg {
+  flex: none;
+  margin-top: 0.125rem;
+  color: var(--accent);
+}
+
+.svc__card--dark .svc__list li {
+  color: var(--tint);
+}
+
+.svc__card--dark .svc__list svg {
+  color: var(--white);
+}
+
+.svc__note {
+  margin-top: 3rem;
+  text-align: center;
+  font-size: 1.125rem;
+  color: var(--text-soft);
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .svc__card:hover {
+    transform: translateY(-0.5rem);
+    box-shadow: 0 1.5rem 3.5rem oklch(27.7% 0.087 308 / 0.14);
+  }
+
+  .svc__card:hover::before {
+    transform: scaleX(1);
+  }
+}
+
+@media (max-width: 68.75rem) {
+  .svc__cards {
+    grid-template-columns: 1fr;
+    max-width: 38rem;
+  }
+}
+
+@media (max-width: 56.25rem) {
+  .svc {
+    padding: 6rem 0 6.5rem;
+  }
+
+  .svc__head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+    margin-bottom: 3rem;
+  }
+
+  .svc__num {
+    margin-bottom: 2rem;
+  }
+}
