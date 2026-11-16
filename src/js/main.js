@@ -679,8 +679,59 @@
   if (stdRows.length && window.matchMedia("(prefers-reduced-motion: no-preference)").matches) {
     stdRows.forEach(function (row) {
       var range = { trigger: row, start: "top 88%", end: "top 52%", scrub: true };
-      gsap.fromTo(row.querySelectorAll(".std__num, h3, p"), { opacity: 0.22 }, { opacity: 1, ease: "none", scrollTrigger: range });
+      gsap.fromTo(row.querySelectorAll(".std__icon, h3, p"), { opacity: 0.22 }, { opacity: 1, ease: "none", scrollTrigger: range });
       gsap.fromTo(row.querySelector(".std__line"), { scaleX: 0 }, { scaleX: 1, ease: "none", scrollTrigger: range });
     });
+  }
+
+  // ---------- 10. Testimonials: one quote at a time, changes by itself ----------
+  var quotes = document.querySelector("#testimonials");
+  if (quotes) {
+    var qPanels = Array.prototype.slice.call(quotes.querySelectorAll(".quotes__panel"));
+    var qTabs = Array.prototype.slice.call(quotes.querySelectorAll(".quotes__tab"));
+    var qStage = quotes.querySelector("#quotesStage");
+    var qMotion = window.matchMedia("(prefers-reduced-motion: no-preference)").matches;
+    var qNow = 0;
+    var qTimer = null;
+    var qInView = false;
+
+    quotes.classList.add("is-ready");
+
+    // the thin bar under the active name fills while its quote is on screen, then the next quote comes
+    function qStart() {
+      if (qTimer) qTimer.kill();
+      var bar = qTabs[qNow].querySelector(".quotes__bar i");
+      gsap.set(qTabs.map(function (t) { return t.querySelector(".quotes__bar i"); }), { scaleX: 0 });
+      if (!qMotion) return;
+      qTimer = gsap.to(bar, { scaleX: 1, duration: 8, ease: "none", onComplete: function () { qShow((qNow + 1) % qPanels.length); } });
+      if (!qInView) qTimer.pause();
+    }
+
+    function qShow(i) {
+      if (i === qNow && qPanels[i].classList.contains("is-active")) { qStart(); return; }
+      var out = qPanels[qNow], inn = qPanels[i];
+      qTabs.forEach(function (t, k) { t.classList.toggle("is-active", k === i); t.setAttribute("aria-selected", k === i ? "true" : "false"); });
+      qNow = i;
+      if (qMotion) {
+        gsap.to(out, { opacity: 0, y: -16, duration: 0.5, ease: "power2.in", overwrite: true, onComplete: function () { out.classList.remove("is-active"); gsap.set(out, { clearProps: "all" }); } });
+        inn.classList.add("is-active");
+        gsap.fromTo(inn, { opacity: 0, y: 28 }, { opacity: 1, y: 0, duration: 1.1, delay: 0.35, ease: "expo.out", overwrite: true, clearProps: "opacity,transform" });
+      } else {
+        out.classList.remove("is-active");
+        inn.classList.add("is-active");
+      }
+      qStart();
+    }
+
+    qTabs.forEach(function (tab, i) { tab.addEventListener("click", function () { qShow(i); }); });
+
+    // only run while the section is on screen, and pause while the pointer is on it
+    ScrollTrigger.create({
+      trigger: quotes, start: "top 75%", end: "bottom 25%",
+      onToggle: function (self) { qInView = self.isActive; if (qTimer) { if (qInView) qTimer.resume(); else qTimer.pause(); } },
+    });
+    qStage.addEventListener("mouseenter", function () { if (qTimer) qTimer.pause(); });
+    qStage.addEventListener("mouseleave", function () { if (qTimer && qInView) qTimer.resume(); });
+    qStart();
   }
 })();
