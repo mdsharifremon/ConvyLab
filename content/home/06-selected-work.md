@@ -15,3 +15,5 @@ Cards (title, category, link to the existing case study):
 Note: the live names differ from the working names ("Kevin Golf Simulator", "Nemaha food consultation", "Orafin"). The site names are used.
 Earlier draft (Phil Stutz, Policy Analysis Lab, Monica McCafferty, with result tags) is parked until the real case-study copy is decided.
 Images: 880px PNGs from convylab.com, hot-linked for now. Download into src/assets/work/ before WordPress (see design note).
+
+Parked: "Both experts work on every project." No room on the home stack (title bars are full, cards cover each other, a header line looked out of place). Use it on the Work page, inside each project's page.

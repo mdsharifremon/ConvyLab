@@ -734,4 +734,73 @@
     qStage.addEventListener("mouseleave", function () { if (qTimer && qInView) qTimer.resume(); });
     qStart();
   }
+  // ---------- 11. Common questions: one answer open at a time ----------
+  var faqItems = gsap.utils.toArray(".faq__item");
+  gsap.set(".faq__a", { height: 0 });
+  faqItems.forEach(function (item) {
+    var q = item.querySelector(".faq__q");
+    var a = item.querySelector(".faq__a");
+    q.addEventListener("click", function () {
+      var willOpen = q.getAttribute("aria-expanded") !== "true";
+      faqItems.forEach(function (other) {
+        var oq = other.querySelector(".faq__q"), oa = other.querySelector(".faq__a");
+        if (oq === q || oq.getAttribute("aria-expanded") !== "true") return;
+        oq.setAttribute("aria-expanded", "false");
+        gsap.to(oa, { height: 0, duration: reduce ? 0 : 0.7, ease: "expo.out", overwrite: true });
+      });
+      q.setAttribute("aria-expanded", willOpen ? "true" : "false");
+      gsap.to(a, { height: willOpen ? "auto" : 0, duration: reduce ? 0 : 0.8, ease: "expo.out", overwrite: true });
+    });
+  });
+
+  // ---------- 12. Start a project: the two photos open up, the button opens the form ----------
+  var start = document.querySelector("#start");
+  if (start) {
+    var startBtn = start.querySelector("#startBtn");
+    // the one form: this button presses the main contact button
+    startBtn.addEventListener("click", function () { openBtn.click(); });
+
+    if (canHover) {
+      var sLabel = startBtn.querySelector(".cta__label");
+      var sChars = splitChars(sLabel);
+      var sIcon = startBtn.querySelector("svg");
+      startBtn.addEventListener("mouseenter", function () {
+        gsap.to(sIcon, { rotationY: 180, transformPerspective: 900, duration: 1.3, ease: "power3.inOut", overwrite: true });
+        retype(sChars);
+      });
+      startBtn.addEventListener("mouseleave", function () {
+        gsap.to(sIcon, { rotationY: 0, transformPerspective: 900, duration: 1.3, ease: "power3.inOut", overwrite: true });
+      });
+    }
+
+    if (!reduce) {
+      gsap.from(start.querySelectorAll("h2"), {
+        y: 50, opacity: 0, duration: 1.3, ease: "expo.out", stagger: 0.12,
+        scrollTrigger: { trigger: start, start: "top 70%", once: true },
+      });
+      var figs = gsap.utils.toArray(".start__photo", start);
+      figs.forEach(function (photo, i) {
+        gsap.fromTo(photo, { clipPath: "inset(100% 0% 0% 0%)" }, {
+          clipPath: "inset(0% 0% 0% 0%)", duration: 1.5, ease: "expo.out", delay: i * 0.18,
+          scrollTrigger: { trigger: start.querySelector(".start__photos"), start: "top 80%", once: true },
+        });
+        gsap.fromTo(photo.firstElementChild, { scale: 1.35 }, {
+          scale: 1, duration: 1.8, ease: "expo.out", delay: i * 0.18,
+          scrollTrigger: { trigger: start.querySelector(".start__photos"), start: "top 80%", once: true },
+        });
+      });
+      gsap.from(start.querySelectorAll(".start__side > *"), {
+        y: 40, opacity: 0, duration: 1.2, ease: "expo.out", stagger: 0.14,
+        scrollTrigger: { trigger: start.querySelector(".start__side"), start: "top 85%", once: true },
+      });
+    }
+  }
+  // ---------- 13. Footer: the big wordmark rises into place ----------
+  var foot = document.querySelector("#footer");
+  if (foot && !reduce) {
+    gsap.fromTo(foot.querySelector(".foot__word"), { yPercent: 45 }, {
+      yPercent: 0, ease: "none",
+      scrollTrigger: { trigger: foot, start: "top bottom", end: "bottom bottom", scrub: true },
+    });
+  }
 })();
