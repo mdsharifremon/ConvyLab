@@ -772,3 +772,272 @@ h1 .line > span {
     margin-top: 7.5rem;
   }
 }
+
+/* ---------- 10. How we work ----------
+   Same pattern as good-fella.com's process section, in our own colours.
+   Phones and reduced motion: the four steps stack, each with its photo.
+   Desktop (js adds .is-pinned): the section pins, scrolling moves through the
+   steps, a marker slides down the list and the photos slide up in a window. */
+.how {
+  background: var(--white);
+  padding: 8rem 0 9rem;
+}
+
+.how__inner {
+  width: var(--wrap);
+  margin: 0 auto;
+}
+
+.how__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.how h2 {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: clamp(2.2rem, 3.6vw, 3.25rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--primary);
+  max-width: 18ch; /* two short lines on phones, one on wide screens */
+}
+
+.how__more {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.9rem 1.4rem;
+  border: 2px solid var(--primary);
+  border-radius: 0.875rem;
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--primary);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.how__more:hover {
+  background: var(--primary);
+  color: var(--white);
+}
+
+.how__steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 4.5rem;
+}
+
+.how__step {
+  display: grid;
+  grid-template-columns: 3rem 1fr;
+  gap: 0.5rem;
+}
+
+.how__num {
+  padding-top: 0.55rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+}
+
+.how h3 {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: clamp(1.75rem, 2.4vw, 2.25rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--primary);
+  margin-bottom: 0.75rem;
+  transition: color 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.how__text p {
+  max-width: 30rem;
+  font-size: 1.15rem;
+  line-height: 1.55;
+  color: var(--text-soft);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.how__inline {
+  display: block;
+  width: 100%;
+  max-width: 26rem;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  margin-top: 1.75rem;
+  border-radius: 1.25rem;
+  background: var(--tint);
+}
+
+/* the desktop-only pieces stay out of the stacked layout */
+.how__marker,
+.how__photo {
+  display: none;
+}
+
+/* ----- pinned desktop layout (only when main.js turned it on) ----- */
+.how.is-pinned {
+  padding: 0;
+}
+
+.how.is-pinned .how__track {
+  height: 320vh;
+}
+
+.how.is-pinned .how__stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  display: flex;
+  align-items: center;
+}
+
+.how.is-pinned h2 {
+  max-width: none;
+}
+
+.how.is-pinned .how__head {
+  margin-bottom: 2.5rem;
+  align-items: center;
+}
+
+.how.is-pinned .how__text p {
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
+
+.how.is-pinned .how__grid {
+  display: flex;
+  align-items: center;
+  gap: 5rem;
+}
+
+.how.is-pinned .how__list {
+  position: relative;
+  flex: 1.1;
+  padding-left: 4.5rem; /* room for the sliding marker */
+}
+
+.how.is-pinned .how__steps {
+  gap: 1.5rem;
+}
+
+.how.is-pinned .how__step {
+  cursor: pointer;
+}
+
+.how.is-pinned .how__inline {
+  display: none;
+}
+
+.how.is-pinned .how__marker {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: block;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.875rem;
+  background: var(--accent);
+  color: var(--white);
+}
+
+.how__marker svg {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0;
+}
+
+.how__marker svg:first-child {
+  opacity: 1;
+}
+
+.how.is-pinned .how__num {
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.how.is-pinned .how__step.is-active .how__num {
+  opacity: 0;
+}
+
+.how.is-pinned .how__step:not(.is-active) h3 {
+  color: var(--muted);
+}
+
+.how.is-pinned .how__step:not(.is-active) .how__text p {
+  opacity: 0.45;
+}
+
+.how.is-pinned .how__photo {
+  display: block;
+  flex: none;
+  height: min(62vh, 38rem);
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 1.25rem;
+  background: var(--tint);
+  box-shadow: 0 2px 0.375rem oklch(27.7% 0.087 308 / 0.05), 0 1.75rem 4rem -1.5rem oklch(27.7% 0.087 308 / 0.22);
+}
+
+.how__strip {
+  height: 400%; /* four photos, one window */
+}
+
+.how__strip img {
+  display: block;
+  width: 100%;
+  height: 25%;
+  object-fit: cover;
+}
+
+@media (max-width: 56.25rem) {
+  .how {
+    padding: 6rem 0 7rem;
+  }
+  .how__head {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 3rem;
+  }
+  .how__steps {
+    gap: 4rem;
+  }
+  .how__step {
+    grid-template-columns: 2.5rem 1fr;
+  }
+}
+
+/* laptops with short screens: tighter so all four steps fit while pinned */
+@media (max-height: 46rem) {
+  .how.is-pinned .how__head {
+    margin-bottom: 2rem;
+  }
+  .how.is-pinned .how__steps {
+    gap: 1.25rem;
+  }
+  .how.is-pinned h3 {
+    font-size: 1.6rem;
+    margin-bottom: 0.4rem;
+  }
+  .how.is-pinned .how__text p {
+    font-size: 1rem;
+    line-height: 1.45;
+  }
+}

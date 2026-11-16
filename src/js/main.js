@@ -539,4 +539,82 @@
     window.addEventListener("load", function () { buildLines(); ScrollTrigger.refresh(); });
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { buildLines(); ScrollTrigger.refresh(); });
   }
+
+  // ---------- 6. How we work: pinned steps (desktop, motion allowed) ----------
+  // The section pins while the visitor scrolls. Scroll progress picks one of
+  // four steps: the marker slides to it, the heading darkens, the photos slide
+  // up one frame. Phones and reduced motion keep the plain stacked layout.
+  var how = document.querySelector("#how");
+  if (how) {
+    var howTrack = how.querySelector(".how__track");
+    var howRows = Array.prototype.slice.call(how.querySelectorAll(".how__step"));
+    var howMarker = how.querySelector(".how__marker");
+    var howIcons = Array.prototype.slice.call(howMarker.querySelectorAll("svg"));
+    var howStrip = how.querySelector(".how__strip");
+
+    gsap.matchMedia().add("(min-width: 56.25rem) and (prefers-reduced-motion: no-preference)", function () {
+      var current = -1;
+      how.classList.add("is-pinned");
+
+      // the marker lines up with the middle of a step's heading
+      function markerY(i) {
+        var title = howRows[i].querySelector("h3");
+        var parent = howMarker.offsetParent || howMarker.parentNode;
+        var top = title.getBoundingClientRect().top - parent.getBoundingClientRect().top;
+        return top + (title.offsetHeight - howMarker.offsetHeight) / 2;
+      }
+
+      function go(i, instant) {
+        if (i === current) return;
+        current = i;
+        var d = instant ? 0 : 1.1;
+        // the active step moves a little to the right, next to the marker; the others rest
+        var shift = 1.5 * parseFloat(getComputedStyle(document.documentElement).fontSize);
+        howRows.forEach(function (row, k) {
+          row.classList.toggle("is-active", k === i);
+          gsap.to(row, { x: k === i ? shift : 0, duration: d, ease: "expo.out", overwrite: true });
+        });
+        gsap.to(howMarker, { y: markerY(i), duration: d, ease: "expo.out", overwrite: true });
+        gsap.to(howStrip, { yPercent: -25 * i, duration: d, ease: "power3.inOut", overwrite: true });
+        howIcons.forEach(function (icon, k) {
+          gsap.to(icon, { opacity: k === i ? 1 : 0, duration: instant ? 0 : 0.5, overwrite: true });
+        });
+      }
+
+      go(0, true);
+
+      var trigger = ScrollTrigger.create({
+        trigger: howTrack,
+        start: "top top",
+        end: "bottom bottom",
+        onUpdate: function (self) { go(Math.min(3, Math.floor(self.progress * 4))); },
+      });
+
+      // clicking a step scrolls to the spot where that step is active
+      var clickers = howRows.map(function (row, i) {
+        var fn = function () {
+          var span = howTrack.offsetHeight - window.innerHeight;
+          var y = howTrack.getBoundingClientRect().top + window.scrollY + ((i + 0.5) / 4) * span;
+          window.scrollTo({ top: y, behavior: "smooth" });
+        };
+        row.addEventListener("click", fn);
+        return fn;
+      });
+
+      var onRefresh = function () { gsap.set(howMarker, { y: markerY(Math.max(current, 0)) }); };
+      ScrollTrigger.addEventListener("refresh", onRefresh);
+      onRefresh();
+
+      return function () {
+        trigger.kill();
+        ScrollTrigger.removeEventListener("refresh", onRefresh);
+        howRows.forEach(function (row, i) {
+          row.removeEventListener("click", clickers[i]);
+          row.classList.remove("is-active");
+        });
+        gsap.set([howMarker, howStrip].concat(howIcons).concat(howRows), { clearProps: "all" });
+        how.classList.remove("is-pinned");
+      };
+    });
+  }
 })();

@@ -1,6 +1,6 @@
 # Home, section 4: How we work
 
-Status: DRAFT v2 (headings follow good-fella.com's pattern, words simplified, copy is ours). Waiting for approval before design.
+Status: DRAFT v3 (headings follow good-fella.com's pattern, words simplified, copy is ours). Waiting for approval before design.
 
 ## Job of this section
 Take the fear out of starting. A buyer who has been burned by an agency wants to know: what happens after I reach out, will I be buried in jargon, will I be surprised at the end? Section 3 is how the website works on a visitor. This section is how WE work with the client.
@@ -10,13 +10,13 @@ Eyebrow: How we work
 Heading: Simple to start. Clear all the way.
 
 01. **Send us a brief.**
-    Tell us what is not working and what you want instead. A few lines is enough. We reply within one business day.
+    Tell us what is not working and what you want instead. A few lines is enough. You get an instant reply, and a personal one from us within 8 hours.
 02. **One conversation.**
-    We talk through what is really holding your site back. Then you get a clear plan, timeline and cost before you commit to anything.
+    We talk through what is really holding your site back. Then you get a clear plan and price before you commit to anything.
 03. **Design and build.**
     One team takes you from first sketch to launch. We choose the platform that fits your business, and you see the work as it grows, so nothing surprises you.
 04. **We take care of it.**
-    After launch we keep your site fast, safe and working, and keep improving it. Regularly you get a clear report of what happened and what is next.
+    After launch we keep your site fast, safe and working, and keep improving it. Regularly you get clear insights on how your website is performing and what to do next.
 
 Button: See how we work (links to the How we work page)
 
@@ -35,8 +35,11 @@ Button: See how we work (links to the How we work page)
 - Good Fella's "six to twelve weeks": not our number.
 
 ## Open items
-- Reply time: "one business day" matches the popup note. Confirm we can keep it.
-- "Clear plan, timeline and cost before you commit": confirm we always give this.
-- Real range of weeks for step 3 (add one line only when confirmed).
-- Popup heading: align to "Send us a brief." with the subline "Tell us the one problem costing you the most."? One phrase for one action.
+- 8 hours is a hard promise. It holds only if someone covers every enquiry across Doha and Dhaka hours, weekends included. If it cannot be kept, change to "within a day" before launch.
+- "Clear plan and price before you commit": confirm we always give this.
+- Popup heading: still "Tell us what's hurting." Align to "Send us a brief." with the subline "Tell us the one problem costing you the most."? (undecided)
 - Design risk: sections 3 and 4 are both four-step sequences back to back. Decide in design whether 4 gets a different shape.
+
+## Update: heading and button
+- Heading in the build: "Simple to start. Clear all the way." Button top right: "See how we work".
+- Photos are Unsplash placeholders (see design/home/04-how-we-work.md).

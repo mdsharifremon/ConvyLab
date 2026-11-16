@@ -1,11 +1,18 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-GB" prefix="og: https://ogp.me/ns#">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ConvyLab | We build systems that engage your audience</title>
-    <meta name="description" content="ConvyLab builds websites as systems that capture attention, build connection and inspire action." />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ConvyLab - Conversion-Focused Digital Solutions</title>
+    <meta
+      name="description"
+      content="ConvyLab cares about your online presence and converson is first priority when it comes to web and digital marketing solutions. Get a free quote today!"
+    />
+    <meta
+      name="robots"
+      content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large"
+    />
+    <link rel="canonical" href="https://www.convylab.com/" />
     <!-- Hide the animated hero parts before the first paint, but only when
          scripts run and the visitor has not asked for reduced motion.
          js/main.js shows them again as each animation starts. -->
@@ -15,9 +22,14 @@
       }
     </script>
 
+    <link rel="icon" type="image/webp" sizes="100x100" href="src/assets/icon-2-100x100.webp" />
+    <link rel="apple-touch-icon" sizes="300x300" href="src/assets/icon-2-300x300.webp" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=PT+Sans:wght@700&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=PT+Sans:wght@700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="src/css/style.css" />
   </head>
 
@@ -25,7 +37,12 @@
     <!-- ================= HEADER ================= -->
     <header class="nav">
       <a class="nav__logo" href="./" aria-label="ConvyLab home">
-        <img src="src/assets/convylab-logo.webp" alt="ConvyLab" width="102" height="25" />
+        <img
+          src="src/assets/convylab-logo.webp"
+          alt="ConvyLab"
+          width="102"
+          height="25"
+        />
       </a>
       <nav aria-label="Main">
         <a href="#">Services</a>
@@ -33,7 +50,9 @@
         <a href="#">About</a>
         <a href="#">Contact</a>
       </nav>
-      <button class="nav__cta" type="button" data-open-form>Let's talk <span aria-hidden="true">&nearr;</span></button>
+      <button class="nav__cta" type="button" data-open-form>
+        Let's talk <span aria-hidden="true">&nearr;</span>
+      </button>
     </header>
 
     <main>
@@ -41,63 +60,133 @@
       <section class="hero">
         <div class="hero__left">
           <div class="hero__tag">
-            <img class="hero__icon" src="src/assets/clicking.webp" alt="" width="48" height="48" />
+            <img
+              class="hero__icon"
+              src="src/assets/clicking.webp"
+              alt=""
+              width="48"
+              height="48"
+            />
             <p class="eyebrow">Your online growth partner</p>
           </div>
 
           <!-- Each line sits in its own mask so it can rise into view.
                Screen readers get the full sentence from aria-label. -->
           <h1 aria-label="We build systems that engage your audience.">
-            <span class="line" aria-hidden="true"><span>We build systems</span></span>
-            <span class="line" aria-hidden="true"><span>that engage</span></span>
-            <span class="line" aria-hidden="true"><span>your audience.</span></span>
+            <span class="line" aria-hidden="true"
+              ><span>We build systems</span></span
+            >
+            <span class="line" aria-hidden="true"
+              ><span>that engage</span></span
+            >
+            <span class="line" aria-hidden="true"
+              ><span>your audience.</span></span
+            >
           </h1>
 
           <!-- The slot is the button's home. It has a fixed size so the hero
                does not jump when the button leaves for the corner. -->
           <div class="hero__actions">
-          <div class="slot">
-            <div class="cta" id="cta">
-              <button class="cta__open" id="openBtn" type="button" aria-expanded="false" aria-controls="form">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z" /></svg>
-                <span class="cta__label">Let's talk</span>
-              </button>
+            <div class="slot">
+              <div class="cta" id="cta">
+                <button
+                  class="cta__open"
+                  id="openBtn"
+                  type="button"
+                  aria-expanded="false"
+                  aria-controls="form"
+                >
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"
+                    />
+                  </svg>
+                  <span class="cta__label">Let's talk</span>
+                </button>
 
-              <form class="cta__form" id="form">
-                <div class="field cta__head">
-                  <h2>Tell us what's hurting.</h2>
-                  <button class="cta__close" id="closeBtn" type="button" aria-label="Close">&times;</button>
+                <form class="cta__form" id="form">
+                  <div class="field cta__head">
+                    <h2>Tell us what's hurting.</h2>
+                    <button
+                      class="cta__close"
+                      id="closeBtn"
+                      type="button"
+                      aria-label="Close"
+                    >
+                      &times;
+                    </button>
+                  </div>
+                  <p class="field cta__note">
+                    A short form. We reply within 8 hours.
+                  </p>
+                  <label class="field"
+                    ><span>Your name</span
+                    ><input
+                      id="name"
+                      name="name"
+                      type="text"
+                      autocomplete="name"
+                      required
+                  /></label>
+                  <label class="field"
+                    ><span>Email</span
+                    ><input
+                      name="email"
+                      type="email"
+                      autocomplete="email"
+                      required
+                  /></label>
+                  <label class="field"
+                    ><span>Website (optional)</span
+                    ><input name="website" type="url" placeholder="https://"
+                  /></label>
+                  <label class="field"
+                    ><span
+                      >What is the one problem costing your business right
+                      now?</span
+                    ><textarea name="problem" rows="3" required></textarea>
+                  </label>
+                  <label class="field"
+                    ><span>What do you think you need?</span>
+                    <select name="need">
+                      <option>Not sure yet</option>
+                      <option>Build</option>
+                      <option>Design + Build</option>
+                      <option>Growth System</option>
+                    </select>
+                  </label>
+                  <button class="field cta__send" id="sendBtn" type="submit">
+                    Send it
+                  </button>
+                </form>
+
+                <div class="cta__done">
+                  <h2>Got it.</h2>
+                  <p>Munna or Sharif will reply within 8 hours.</p>
+                  <button class="cta__send" id="doneBtn" type="button">
+                    Close
+                  </button>
                 </div>
-                <p class="field cta__note">A short form. We reply within one business day.</p>
-                <label class="field"><span>Your name</span><input id="name" name="name" type="text" autocomplete="name" required /></label>
-                <label class="field"><span>Email</span><input name="email" type="email" autocomplete="email" required /></label>
-                <label class="field"><span>Website (optional)</span><input name="website" type="url" placeholder="https://" /></label>
-                <label class="field"><span>What is the one problem costing your business right now?</span><textarea name="problem" rows="3" required></textarea></label>
-                <label class="field"><span>What do you think you need?</span>
-                  <select name="need">
-                    <option>Not sure yet</option>
-                    <option>Build</option>
-                    <option>Design + Build</option>
-                    <option>Growth System</option>
-                  </select>
-                </label>
-                <button class="field cta__send" id="sendBtn" type="submit">Send it</button>
-              </form>
-
-              <div class="cta__done">
-                <h2>Got it.</h2>
-                <p>Munna or Sharif will reply within one business day.</p>
-                <button class="cta__send" id="doneBtn" type="button">Close</button>
               </div>
             </div>
-          </div>
-          <a class="hero__link" href="#work" data-retype>See our work</a>
+            <a class="hero__link" href="#work" data-retype>See our work</a>
           </div>
         </div>
 
         <p class="hero__lead">
-          Our approach captures <strong>attention</strong>, builds <strong>connection</strong> and inspires
-          <strong>action</strong>, turning real enquiries into loyal <strong>customers</strong>.
+          Our approach captures <strong>attention</strong>, builds
+          <strong>connection</strong> and inspires <strong>action</strong>,
+          turning real enquiries into loyal <strong>customers</strong>.
         </p>
       </section>
 
@@ -113,20 +202,56 @@
              old site is replaced. If an image fails, the name shows instead. -->
         <div class="logos">
           <div class="logos__row" data-dir="left">
-            <img src="https://www.convylab.com/wp-content/uploads/2024/10/ijcai-logo-with-letters.png" alt="IJCAI" />
-            <img src="https://www.convylab.com/wp-content/uploads/2024/10/Policy-Analysis-Lab-logo-1.png" alt="Policy Analysis Lab" />
-            <img src="https://www.convylab.com/wp-content/uploads/2024/10/Transformation-Group.png" alt="Transformation Group" />
-            <img src="https://www.convylab.com/wp-content/uploads/2024/10/logo_7a464907-76cd-4994-b418-9738e1183e91_2000x-ezgif.com-webp-to-png-converter.png" alt="Dr. Frederick's Original" />
-            <img src="https://www.convylab.com/wp-content/uploads/2024/10/Orapin-Purpose-driven-PR.png" alt="Orapin" />
-            <img src="https://www.convylab.com/wp-content/uploads/2024/10/images.png" alt="Notre Internationale" />
+            <img
+              src="https://www.convylab.com/wp-content/uploads/2024/10/ijcai-logo-with-letters.png"
+              alt="IJCAI"
+            />
+            <img
+              src="https://www.convylab.com/wp-content/uploads/2024/10/Policy-Analysis-Lab-logo-1.png"
+              alt="Policy Analysis Lab"
+            />
+            <img
+              src="https://www.convylab.com/wp-content/uploads/2024/10/Transformation-Group.png"
+              alt="Transformation Group"
+            />
+            <img
+              src="https://www.convylab.com/wp-content/uploads/2024/10/logo_7a464907-76cd-4994-b418-9738e1183e91_2000x-ezgif.com-webp-to-png-converter.png"
+              alt="Dr. Frederick's Original"
+            />
+            <img
+              src="https://www.convylab.com/wp-content/uploads/2024/10/Orapin-Purpose-driven-PR.png"
+              alt="Orapin"
+            />
+            <img
+              src="https://www.convylab.com/wp-content/uploads/2024/10/images.png"
+              alt="Notre Internationale"
+            />
           </div>
           <div class="logos__row" data-dir="right">
-            <img src="https://www.convylab.com/wp-content/uploads/2024/10/Orapin-Purpose-driven-PR.png" alt="Orapin" />
-            <img src="https://www.convylab.com/wp-content/uploads/2024/10/images.png" alt="Notre Internationale" />
-            <img src="https://www.convylab.com/wp-content/uploads/2024/10/ijcai-logo-with-letters.png" alt="IJCAI" />
-            <img src="https://www.convylab.com/wp-content/uploads/2024/10/Transformation-Group.png" alt="Transformation Group" />
-            <img src="https://www.convylab.com/wp-content/uploads/2024/10/Policy-Analysis-Lab-logo-1.png" alt="Policy Analysis Lab" />
-            <img src="https://www.convylab.com/wp-content/uploads/2024/10/logo_7a464907-76cd-4994-b418-9738e1183e91_2000x-ezgif.com-webp-to-png-converter.png" alt="Dr. Frederick's Original" />
+            <img
+              src="https://www.convylab.com/wp-content/uploads/2024/10/Orapin-Purpose-driven-PR.png"
+              alt="Orapin"
+            />
+            <img
+              src="https://www.convylab.com/wp-content/uploads/2024/10/images.png"
+              alt="Notre Internationale"
+            />
+            <img
+              src="https://www.convylab.com/wp-content/uploads/2024/10/ijcai-logo-with-letters.png"
+              alt="IJCAI"
+            />
+            <img
+              src="https://www.convylab.com/wp-content/uploads/2024/10/Transformation-Group.png"
+              alt="Transformation Group"
+            />
+            <img
+              src="https://www.convylab.com/wp-content/uploads/2024/10/Policy-Analysis-Lab-logo-1.png"
+              alt="Policy Analysis Lab"
+            />
+            <img
+              src="https://www.convylab.com/wp-content/uploads/2024/10/logo_7a464907-76cd-4994-b418-9738e1183e91_2000x-ezgif.com-webp-to-png-converter.png"
+              alt="Dr. Frederick's Original"
+            />
           </div>
         </div>
 
@@ -134,19 +259,31 @@
              js/main.js only counts up to them. -->
         <ul class="stats">
           <li class="stat">
-            <p class="stat__num" aria-label="12 plus"><span class="stat__val" data-to="12" aria-hidden="true">12</span><span class="stat__plus" aria-hidden="true">+</span></p>
+            <p class="stat__num" aria-label="12 plus">
+              <span class="stat__val" data-to="12" aria-hidden="true">12</span
+              ><span class="stat__plus" aria-hidden="true">+</span>
+            </p>
             <p class="stat__label">Years of experience</p>
           </li>
           <li class="stat">
-            <p class="stat__num" aria-label="300 plus"><span class="stat__val" data-to="300" aria-hidden="true">300</span><span class="stat__plus" aria-hidden="true">+</span></p>
+            <p class="stat__num" aria-label="300 plus">
+              <span class="stat__val" data-to="300" aria-hidden="true">300</span
+              ><span class="stat__plus" aria-hidden="true">+</span>
+            </p>
             <p class="stat__label">Websites shipped</p>
           </li>
           <li class="stat">
-            <p class="stat__num" aria-label="30 plus"><span class="stat__val" data-to="30" aria-hidden="true">30</span><span class="stat__plus" aria-hidden="true">+</span></p>
+            <p class="stat__num" aria-label="30 plus">
+              <span class="stat__val" data-to="30" aria-hidden="true">30</span
+              ><span class="stat__plus" aria-hidden="true">+</span>
+            </p>
             <p class="stat__label">Clients</p>
           </li>
           <li class="stat">
-            <p class="stat__num" aria-label="10 plus"><span class="stat__val" data-to="10" aria-hidden="true">10</span><span class="stat__plus" aria-hidden="true">+</span></p>
+            <p class="stat__num" aria-label="10 plus">
+              <span class="stat__val" data-to="10" aria-hidden="true">10</span
+              ><span class="stat__plus" aria-hidden="true">+</span>
+            </p>
             <p class="stat__label">Countries</p>
           </li>
         </ul>
@@ -164,28 +301,42 @@
                 <span class="step__node" aria-hidden="true">1</span>
                 <div class="step__body">
                   <h3>Understand your audience</h3>
-                  <p>Before we design anything, we learn who your visitors are, what worries them and what makes them act.</p>
+                  <p>
+                    Before we design anything, we learn who your visitors are,
+                    what worries them and what makes them act.
+                  </p>
                 </div>
               </li>
               <li class="step">
                 <span class="step__node" aria-hidden="true">2</span>
                 <div class="step__body">
                   <h3>Capture attention, build connection</h3>
-                  <p>We speak to that audience in their own words, so the right people stop, read and feel understood.</p>
+                  <p>
+                    We speak to that audience in their own words, so the right
+                    people stop, read and feel understood.
+                  </p>
                 </div>
               </li>
               <li class="step">
                 <span class="step__node" aria-hidden="true">3</span>
                 <div class="step__body">
                   <h3>Inspire action</h3>
-                  <p>One clear next step on every page. Every enquiry gets a quick first reply and follow-ups, until the conversation turns personal and you take over.</p>
+                  <p>
+                    One clear next step on every page. Every enquiry gets a
+                    quick first reply and follow-ups, until the conversation
+                    turns personal and you take over.
+                  </p>
                 </div>
               </li>
               <li class="step">
                 <span class="step__node" aria-hidden="true">4</span>
                 <div class="step__body">
                   <h3>Keep improving, keep converting</h3>
-                  <p>Regularly we read the numbers: how visitors behave, how Google sees your site, how many enquiries come in. Then we improve the pages and follow-ups that hold results back.</p>
+                  <p>
+                    Regularly we read the numbers: how visitors behave, how
+                    Google sees your site, how many enquiries come in. Then we
+                    improve the pages and follow-ups that hold results back.
+                  </p>
                 </div>
               </li>
             </ol>
@@ -193,14 +344,82 @@
           </div>
 
           <p class="approach__close">
-            We bring you engaged visitors and real enquiries, and follow up until the conversation turns personal.
+            We bring you engaged visitors and real enquiries, and follow up
+            until the conversation turns personal.
             <span>Then you turn it into a customer.</span>
           </p>
         </div>
       </section>
 
+      <!-- 4. How we work: pinned on desktop (scroll moves through the steps), stacked on phones -->
+      <section class="how" id="how" aria-labelledby="how-title">
+        <div class="how__track">
+          <div class="how__stage">
+            <div class="how__inner">
+              <header class="how__head">
+                <h2 id="how-title">Simple to start. Clear all the way.</h2>
+                <!-- becomes the How we work page -->
+                <a class="how__more" href="#how">See how we work <span aria-hidden="true">&rarr;</span></a>
+              </header>
+
+              <div class="how__grid">
+                <div class="how__list">
+                  <span class="how__marker" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 11h7"/><path d="M8.5 14h4"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/><path d="M9 9v11"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.2 8-8 9-4.8-1-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span>
+                  <ol class="how__steps">
+              <li class="how__step" data-step="0">
+                <span class="how__num">01</span>
+                <div class="how__text">
+                  <h3>Send us a brief.</h3>
+                  <p>Tell us what is not working and what you want instead. A few lines is enough. You get an instant reply, and a personal one from us within 8 hours.</p>
+                  <img class="how__inline" src="https://images.unsplash.com/photo-1620275765334-4ed948bb4502?w=800&h=1000&fit=crop&crop=entropy&q=68&auto=format" alt="" width="800" height="1000" loading="lazy" decoding="async" />
+                </div>
+              </li>
+              <li class="how__step" data-step="1">
+                <span class="how__num">02</span>
+                <div class="how__text">
+                  <h3>One conversation.</h3>
+                  <p>We talk through what is really holding your site back. Then you get a clear plan and price before you commit to anything.</p>
+                  <img class="how__inline" src="https://images.unsplash.com/photo-1604881991405-b273c7a4386a?w=800&h=1000&fit=crop&crop=entropy&q=68&auto=format" alt="" width="800" height="1000" loading="lazy" decoding="async" />
+                </div>
+              </li>
+              <li class="how__step" data-step="2">
+                <span class="how__num">03</span>
+                <div class="how__text">
+                  <h3>Design and build.</h3>
+                  <p>One team takes you from first sketch to launch. We choose the platform that fits your business, and you see the work as it grows, so nothing surprises you.</p>
+                  <img class="how__inline" src="https://images.unsplash.com/photo-1663524789630-b18292c8de6e?w=800&h=1000&fit=crop&crop=entropy&q=68&auto=format" alt="" width="800" height="1000" loading="lazy" decoding="async" />
+                </div>
+              </li>
+              <li class="how__step" data-step="3">
+                <span class="how__num">04</span>
+                <div class="how__text">
+                  <h3>We take care of it.</h3>
+                  <p>After launch we keep your site fast, safe and working, and keep improving it. Regularly you get clear insights on how your website is performing and what to do next.</p>
+                  <img class="how__inline" src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&h=1000&fit=crop&crop=entropy&q=68&auto=format" alt="" width="800" height="1000" loading="lazy" decoding="async" />
+                </div>
+              </li>
+                  </ol>
+                </div>
+                <div class="how__photo" aria-hidden="true">
+                  <div class="how__strip">
+                  <img src="https://images.unsplash.com/photo-1620275765334-4ed948bb4502?w=800&h=1000&fit=crop&crop=entropy&q=68&auto=format" alt="" width="800" height="1000" loading="lazy" decoding="async" />
+                  <img src="https://images.unsplash.com/photo-1604881991405-b273c7a4386a?w=800&h=1000&fit=crop&crop=entropy&q=68&auto=format" alt="" width="800" height="1000" loading="lazy" decoding="async" />
+                  <img src="https://images.unsplash.com/photo-1663524789630-b18292c8de6e?w=800&h=1000&fit=crop&crop=entropy&q=68&auto=format" alt="" width="800" height="1000" loading="lazy" decoding="async" />
+                  <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&h=1000&fit=crop&crop=entropy&q=68&auto=format" alt="" width="800" height="1000" loading="lazy" decoding="async" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- Placeholder so the page can scroll. Sections 4 to 10 go here. -->
-      <section class="next" id="work"><p>Next sections: How we work, then Selected work (it will own #work)</p></section>
+      <section class="next" id="work">
+        <p>
+          Next sections: Selected work (it will own #work)
+        </p>
+      </section>
     </main>
 
     <!-- Dims the page while the form is open -->
