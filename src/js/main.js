@@ -629,4 +629,58 @@
       },
     });
   }
+  // ---------- 8. Selected work: cards stack (desktop, motion allowed) ----------
+  // Each photo starts zoomed in and settles to normal as its card arrives. When the
+  // next card slides over, the cards below shrink a little and fade, a bit more
+  // for each card that covers them. They stay in place, so the stack stays visible.
+  var work = document.querySelector("#work");
+  if (work) {
+    gsap.matchMedia().add("(min-width: 56.25rem) and (prefers-reduced-motion: no-preference)", function () {
+      work.classList.add("is-stacked");
+      var items = gsap.utils.toArray(".work__item", work);
+      var cards = items.map(function (it) { return it.querySelector(".work__card"); });
+      var photos = items.map(function (it) { return it.querySelector(".work__media img"); });
+      var veils = items.map(function (it) { return it.querySelector(".work__veil"); });
+      var STEP_SCALE = 0.03;  // how much smaller each covered card gets
+      var STEP_FADE = 0.12;   // and how much darker (a veil, so the card never turns see-through)
+      var triggers = [];
+
+      function stickyTop(item) { return parseFloat(getComputedStyle(item).top); }
+
+      items.forEach(function (item, i) {
+        // photo zoom: 2 -> 1 while the card travels up to its resting place
+        var zoom = gsap.fromTo(photos[i], { scale: 2 }, {
+          scale: 1, ease: "none",
+          scrollTrigger: { trigger: item, start: "top bottom", end: function () { return "top " + stickyTop(item) + "px"; }, scrub: true, invalidateOnRefresh: true },
+        });
+        triggers.push(zoom.scrollTrigger);
+
+        // when this card slides in, every card above it in the stack steps back
+        if (i === 0) return;
+        for (var k = 0; k < i; k++) {
+          var depth = i - k; // how many cards now cover card k
+          var range = { trigger: item, start: "top bottom", end: function () { return "top " + stickyTop(item) + "px"; }, scrub: true, invalidateOnRefresh: true };
+          var t = gsap.fromTo(cards[k], { scale: 1 - STEP_SCALE * (depth - 1) }, { scale: 1 - STEP_SCALE * depth, ease: "none", immediateRender: false, scrollTrigger: range });
+          var v = gsap.fromTo(veils[k], { opacity: STEP_FADE * (depth - 1) }, { opacity: STEP_FADE * depth, ease: "none", immediateRender: false, scrollTrigger: range });
+          triggers.push(v.scrollTrigger);
+          triggers.push(t.scrollTrigger);
+        }
+      });
+
+      return function () {
+        triggers.forEach(function (t) { t.kill(); });
+        gsap.set(cards.concat(photos).concat(veils), { clearProps: "all" });
+        work.classList.remove("is-stacked");
+      };
+    });
+  }
+  // ---------- 9. The standard: each row lights up as you read down ----------
+  var stdRows = gsap.utils.toArray(".std__row");
+  if (stdRows.length && window.matchMedia("(prefers-reduced-motion: no-preference)").matches) {
+    stdRows.forEach(function (row) {
+      var range = { trigger: row, start: "top 88%", end: "top 52%", scrub: true };
+      gsap.fromTo(row.querySelectorAll(".std__num, h3, p"), { opacity: 0.22 }, { opacity: 1, ease: "none", scrollTrigger: range });
+      gsap.fromTo(row.querySelector(".std__line"), { scaleX: 0 }, { scaleX: 1, ease: "none", scrollTrigger: range });
+    });
+  }
 })();

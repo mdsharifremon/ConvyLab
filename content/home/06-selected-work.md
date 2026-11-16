@@ -1,37 +1,17 @@
-# 05 Selected work (draft v1)
+# 06 Selected work (v2: four ConvyLab projects, temporary)
 
-Source of facts: wwmunna.com case studies. No numbers are on that page, so none are used here.
-
-## Copy
+Source: the "Our Recent Work" section on convylab.com. Projects will be replaced later.
 
 Eyebrow: Selected work
+Heading: Sites that do a job for their owners.
+Link button: See all work (Work page, not built yet)
 
-Heading: **Sites that do a job for their owners.**
+Cards (title, category, link to the existing case study):
+1. The Cabin: Golf Simulator Membership
+2. Nemaha Sports Construction
+3. Senior Insurance Marketing
+4. Orapin Marketing
 
-Intro (one line): Three clients, three different problems. Each site was built around what the owner needed it to do.
-
-### 1. Phil Stutz — Author
-Problem → fix: His readers lived on social media. We gave him a site of his own, so people come to him, not only to a feed.
-Result tags: Higher engagement · More book sales
-
-### 2. Policy Analysis Lab — Learning platform
-Problem → fix: The site was scattered and lost people's attention. We turned it into one clear place to learn and find the courses.
-Result tags: Clearer course navigation · More engagement
-
-### 3. Monica McCafferty — Public affairs consultant
-Problem → fix: A basic blog that did not show her standing. We put her credentials first and made her services clear for senior buyers.
-Result tags: Credentials up front · Clear services
-
-Button: See all work (to the Work page)
-
-## Why
-- Three cases is enough on the home page. The Work page holds the rest.
-- Each case tells problem, then fix, in two short lines. Same pattern three times, so it scans fast.
-- Different client types (author, platform, consultant) show range without naming niches.
-- Result tags repeat only what wwmunna.com already says. Nothing is added.
-- #work is the target of the hero "See our work" link.
-
-## To confirm
-- Can we use "More book sales" and "More engagement" without numbers?
-- Permission to show each client name and site.
-- Do we have screenshots or live links for all three?
+Note: the live names differ from the working names ("Kevin Golf Simulator", "Nemaha food consultation", "Orafin"). The site names are used.
+Earlier draft (Phil Stutz, Policy Analysis Lab, Monica McCafferty, with result tags) is parked until the real case-study copy is decided.
+Images: 880px PNGs from convylab.com, hot-linked for now. Download into src/assets/work/ before WordPress (see design note).
