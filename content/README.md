@@ -25,3 +25,6 @@ One folder per page, one file per section. Each file has the same parts:
 - **Unproven services.** Monthly reports, enquiry filtering and AI
   visibility are described as work we do, never as results, until there is
   a client result to show.
+
+## Standing rule: simple words (Sharif)
+Use the simplest word that is true. No jargon, no method names, no "plain English" (the site is English). Prefer "regularly" to a fixed cadence like "monthly" unless the cadence is guaranteed.

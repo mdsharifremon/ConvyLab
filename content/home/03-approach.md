@@ -16,7 +16,7 @@ Heading: It starts with your audience.
 3. **Inspire action**
    One clear next step on every page. Every enquiry gets a quick first reply and follow-ups, until the conversation turns personal and you take over.
 4. **Keep improving, keep converting**
-   Every month we read the numbers: how visitors behave, how Google sees your site, how many enquiries come in. Then we improve the pages and follow-ups that hold results back.
+   Regularly we read the numbers: how visitors behave, how Google sees your site, how many enquiries come in. Then we improve the pages and follow-ups that hold results back.
 
 Closing line: We bring you engaged visitors and real enquiries, and follow up until the conversation turns personal. Then you turn it into a customer.
 
