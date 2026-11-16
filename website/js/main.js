@@ -27,6 +27,20 @@
   // true when the visitor asked their device for less motion
   var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  // Colours live in the CSS as OKLCH tokens. GSAP blends plain rgb() values,
+  // so this reads a token and returns it as rgb() (the browser does the maths).
+  var colorProbe = document.createElement("canvas").getContext("2d", { willReadFrequently: true });
+  function token(name, fallback) {
+    var value = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    if (!value || !colorProbe) return fallback;
+    colorProbe.clearRect(0, 0, 1, 1);
+    colorProbe.fillStyle = "#000";
+    colorProbe.fillStyle = value;
+    colorProbe.fillRect(0, 0, 1, 1);
+    var d = colorProbe.getImageData(0, 0, 1, 1).data;
+    return "rgb(" + d[0] + "," + d[1] + "," + d[2] + ")";
+  }
+
   var cta = document.querySelector("#cta");
   var openBtn = document.querySelector("#openBtn");
   var closeBtn = document.querySelector("#closeBtn");
@@ -143,8 +157,8 @@
         line.appendChild(s);
       });
     });
-    var accent = getComputedStyle(document.documentElement).getPropertyValue("--accent").trim() || "#7A00FF";
-    var primary = getComputedStyle(document.documentElement).getPropertyValue("--primary").trim() || "#341948";
+    var accent = token("--accent", "rgb(122,0,255)");
+    var primary = token("--primary", "rgb(52,25,72)");
     document.querySelector("h1").addEventListener("mouseover", function (e) {
       var t = e.target;
       if (!t.classList || !t.classList.contains("hc")) return;
@@ -409,5 +423,120 @@
         // the plus pops in as the number lands
         .from(stat.querySelector(".stat__plus"), { scale: 0, opacity: 0, duration: 0.5, ease: "back.out(3)" }, at + 1.05);
     });
+  }
+
+  // ---------- 5. Our approach: the line that joins the steps ----------
+  // One purple line is drawn from circle to circle as the visitor scrolls
+  // (scrub). When the line reaches a circle, the circle fills and its text
+  // brightens. Nothing else moves, so there is only one movement at a time.
+  var stepEls = document.querySelectorAll(".step");
+  var stepsWrap = document.querySelector("#stepsWrap");
+  var stepsSvg = document.querySelector("#stepsSvg");
+
+  if (stepEls.length && stepsWrap && stepsSvg) {
+    var SVGNS = "http://www.w3.org/2000/svg";
+    var cs = getComputedStyle(document.documentElement);
+    var cPrimary = token("--primary", "rgb(52,25,72)");
+    var cWhite = token("--white", "rgb(255,255,255)");
+    var cLine = token("--line", "rgb(231,223,243)");
+    var DIM = 0.28;
+    var lit = []; // which steps are lit right now
+    var stepTriggers = [];
+
+    function setStep(i, on) {
+      if (lit[i] === on) return;
+      lit[i] = on;
+      var node = stepEls[i].querySelector(".step__node");
+      var body = stepEls[i].querySelector(".step__body");
+      gsap.to(body, { opacity: on ? 1 : DIM, duration: 0.7, ease: "power2.out", overwrite: true });
+      gsap.to(node, {
+        backgroundColor: on ? cPrimary : cWhite,
+        color: on ? cWhite : cPrimary,
+        borderColor: on ? cPrimary : cLine,
+        duration: 0.6,
+        ease: "power2.out",
+        overwrite: true,
+      });
+    }
+
+    if (!reduce) {
+      // everything starts dim; scripts brighten it, so without scripts it is all readable
+      stepEls.forEach(function (s, i) {
+        lit[i] = false;
+        gsap.set(s.querySelector(".step__body"), { opacity: DIM });
+      });
+    }
+
+    function buildLines() {
+      stepTriggers.forEach(function (t) { t.kill(); });
+      stepTriggers = [];
+      stepsSvg.innerHTML = "";
+
+      var box = stepsWrap.getBoundingClientRect();
+      stepsSvg.setAttribute("viewBox", "0 0 " + box.width + " " + box.height);
+
+      var pts = Array.prototype.map.call(stepEls, function (s) {
+        var r = s.querySelector(".step__node").getBoundingClientRect();
+        return { x: r.left - box.left + r.width / 2, y: r.top - box.top + r.height / 2, r: r.height / 2 };
+      });
+
+      for (var i = 0; i < pts.length - 1; i++) {
+        var a = pts[i];
+        var b = pts[i + 1];
+        var y1 = a.y + a.r;
+        var y2 = b.y - b.r;
+        var mid = (y1 + y2) / 2;
+        // leaves the circle going down, sweeps across, and arrives going down
+        var d = "M" + a.x + " " + y1 + " C" + a.x + " " + mid + " " + b.x + " " + mid + " " + b.x + " " + y2;
+
+        var base = document.createElementNS(SVGNS, "path");
+        base.setAttribute("d", d);
+        base.setAttribute("class", "steps__base");
+        stepsSvg.appendChild(base);
+
+        var draw = document.createElementNS(SVGNS, "path");
+        draw.setAttribute("d", d);
+        draw.setAttribute("class", "steps__draw");
+        draw.setAttribute("pathLength", "1");
+        draw.style.strokeDasharray = "1";
+        draw.style.strokeDashoffset = reduce ? "0" : "1";
+        stepsSvg.appendChild(draw);
+
+        if (!reduce) {
+          (function (idx, line) {
+            stepTriggers.push(
+              ScrollTrigger.create({
+                trigger: stepEls[idx],
+                start: "center 62%",
+                endTrigger: stepEls[idx + 1],
+                end: "center 62%",
+                scrub: 0.6,
+                animation: gsap.fromTo(line, { strokeDashoffset: 1 }, { strokeDashoffset: 0, ease: "none" }),
+                onUpdate: function (self) { setStep(idx + 1, self.progress > 0.97); },
+              })
+            );
+          })(i, draw);
+        }
+      }
+
+      if (!reduce) {
+        stepTriggers.push(
+          ScrollTrigger.create({
+            trigger: stepEls[0],
+            start: "top 75%",
+            onEnter: function () { setStep(0, true); },
+            onLeaveBack: function () { setStep(0, false); },
+          })
+        );
+      }
+    }
+
+    var resizeTimer;
+    window.addEventListener("resize", function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function () { buildLines(); ScrollTrigger.refresh(); }, 200);
+    });
+    window.addEventListener("load", function () { buildLines(); ScrollTrigger.refresh(); });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { buildLines(); ScrollTrigger.refresh(); });
   }
 })();

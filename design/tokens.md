@@ -53,3 +53,11 @@ Accent is used sparingly: one or two places per screen.
 - Plain HTML, CSS and JavaScript. No npm, no build step.
 - GSAP 3.13 with ScrollTrigger and Flip, loaded with script tags. In
   WordPress these become `wp_enqueue_script` calls.
+
+## Units and colour (rules for every section)
+- **Sizes in rem** (1rem = 16px) so the whole site scales from one place. Only 1px and 2px hairlines (borders, outlines, thin lines) stay in px. Breakpoints are in rem too (68.75rem = 1100px, 56.25rem = 900px).
+- **Colours in OKLCH**, as tokens in :root (--primary, --secondary, --text, --muted, --tint, --white, --accent, --line, --track, --text-soft). Why OKLCH: equal lightness steps look equal to the eye, so tints, hover states and shadows can be made by changing one number (L for lightness, C for colour strength, H for hue), and the vivid purple accent is not clipped like it is in plain sRGB. Transparent versions use `oklch(L C H / alpha)`. Never write a loose hex value in a section: add or reuse a token.
+- JS reads tokens through `token()` in main.js, which returns rgb() because GSAP blends rgb values.
+
+## Counters (section 2)
+- Desktop: 4 columns. Tablet and phone: 2 columns. Number always on top, label below, at every size. Only padding, gap and number size shrink.
