@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ConvyLab | We build systems that engage your audience</title>
+    <meta name="description" content="ConvyLab builds websites as systems that capture attention, build connection and inspire action." />
+
+    <!-- Hide the animated hero parts before the first paint, but only when
+         scripts run and the visitor has not asked for reduced motion.
+         js/main.js shows them again as each animation starts. -->
+    <script>
+      if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        document.documentElement.classList.add("anim");
+      }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=PT+Sans:wght@700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <!-- ================= HEADER ================= -->
+    <header class="nav">
+      <a class="nav__logo" href="./" aria-label="ConvyLab home">
+        <img src="assets/convylab-logo.webp" alt="ConvyLab" width="102" height="25" />
+      </a>
+      <nav aria-label="Main">
+        <a href="#">Services</a>
+        <a href="#">Work</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+      </nav>
+      <button class="nav__cta" type="button" data-open-form>Let's talk <span aria-hidden="true">&nearr;</span></button>
+    </header>
+
+    <main>
+      <!-- ================= SECTION 1: HERO ================= -->
+      <section class="hero">
+        <div class="hero__left">
+          <div class="hero__tag">
+            <img class="hero__icon" src="assets/clicking.webp" alt="" width="48" height="48" />
+            <p class="eyebrow">Your online growth partner</p>
+          </div>
+
+          <!-- Each line sits in its own mask so it can rise into view.
+               Screen readers get the full sentence from aria-label. -->
+          <h1 aria-label="We build systems that engage your audience.">
+            <span class="line" aria-hidden="true"><span>We build systems</span></span>
+            <span class="line" aria-hidden="true"><span>that engage</span></span>
+            <span class="line" aria-hidden="true"><span>your audience.</span></span>
+          </h1>
+
+          <!-- The slot is the button's home. It has a fixed size so the hero
+               does not jump when the button leaves for the corner. -->
+          <div class="hero__actions">
+          <div class="slot">
+            <div class="cta" id="cta">
+              <button class="cta__open" id="openBtn" type="button" aria-expanded="false" aria-controls="form">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z" /></svg>
+                <span class="cta__label">Let's talk</span>
+              </button>
+
+              <form class="cta__form" id="form">
+                <div class="field cta__head">
+                  <h2>Tell us what's hurting.</h2>
+                  <button class="cta__close" id="closeBtn" type="button" aria-label="Close">&times;</button>
+                </div>
+                <p class="field cta__note">A short form. We reply within one business day.</p>
+                <label class="field"><span>Your name</span><input id="name" name="name" type="text" autocomplete="name" required /></label>
+                <label class="field"><span>Email</span><input name="email" type="email" autocomplete="email" required /></label>
+                <label class="field"><span>Website (optional)</span><input name="website" type="url" placeholder="https://" /></label>
+                <label class="field"><span>What is the one problem costing your business right now?</span><textarea name="problem" rows="3" required></textarea></label>
+                <label class="field"><span>What do you think you need?</span>
+                  <select name="need">
+                    <option>Not sure yet</option>
+                    <option>Build</option>
+                    <option>Design + Build</option>
+                    <option>Growth System</option>
+                  </select>
+                </label>
+                <button class="field cta__send" id="sendBtn" type="submit">Send it</button>
+              </form>
+
+              <div class="cta__done">
+                <h2>Got it.</h2>
+                <p>Munna or Sharif will reply within one business day.</p>
+                <button class="cta__send" id="doneBtn" type="button">Close</button>
+              </div>
+            </div>
+          </div>
+          <a class="hero__link" href="#work" data-retype>See our work</a>
+          </div>
+        </div>
+
+        <p class="hero__lead">
+          Our approach captures <strong>attention</strong>, builds <strong>connection</strong> and inspires
+          <strong>action</strong>, turning real enquiries into loyal <strong>customers</strong>.
+        </p>
+      </section>
+
+      <!-- ================= SECTION 2: PROOF ================= -->
+      <section class="proof" aria-label="Clients and numbers">
+        <p class="proof__label">Trusted by</p>
+
+        <!-- Two rows. Row one moves left on scroll, row two moves right.
+             The six logos repeat to fill the width; add more logos here
+             (two rows want at least 16 different ones).
+             TEMPORARY: the images load from the live convylab.com site.
+             Save them into assets/logos/ and change the paths before the
+             old site is replaced. If an image fails, the name shows instead. -->
+        <div class="logos">
+          <div class="logos__row" data-dir="left">
+            <img src="https://www.convylab.com/wp-content/uploads/2024/10/ijcai-logo-with-letters.png" alt="IJCAI" />
+            <img src="https://www.convylab.com/wp-content/uploads/2024/10/Policy-Analysis-Lab-logo-1.png" alt="Policy Analysis Lab" />
+            <img src="https://www.convylab.com/wp-content/uploads/2024/10/Transformation-Group.png" alt="Transformation Group" />
+            <img src="https://www.convylab.com/wp-content/uploads/2024/10/logo_7a464907-76cd-4994-b418-9738e1183e91_2000x-ezgif.com-webp-to-png-converter.png" alt="Dr. Frederick's Original" />
+            <img src="https://www.convylab.com/wp-content/uploads/2024/10/Orapin-Purpose-driven-PR.png" alt="Orapin" />
+            <img src="https://www.convylab.com/wp-content/uploads/2024/10/images.png" alt="Notre Internationale" />
+          </div>
+          <div class="logos__row" data-dir="right">
+            <img src="https://www.convylab.com/wp-content/uploads/2024/10/Orapin-Purpose-driven-PR.png" alt="Orapin" />
+            <img src="https://www.convylab.com/wp-content/uploads/2024/10/images.png" alt="Notre Internationale" />
+            <img src="https://www.convylab.com/wp-content/uploads/2024/10/ijcai-logo-with-letters.png" alt="IJCAI" />
+            <img src="https://www.convylab.com/wp-content/uploads/2024/10/Transformation-Group.png" alt="Transformation Group" />
+            <img src="https://www.convylab.com/wp-content/uploads/2024/10/Policy-Analysis-Lab-logo-1.png" alt="Policy Analysis Lab" />
+            <img src="https://www.convylab.com/wp-content/uploads/2024/10/logo_7a464907-76cd-4994-b418-9738e1183e91_2000x-ezgif.com-webp-to-png-converter.png" alt="Dr. Frederick's Original" />
+          </div>
+        </div>
+
+        <!-- The final numbers are written here as real text.
+             js/main.js only counts up to them. -->
+        <ul class="stats">
+          <li class="stat">
+            <p class="stat__num" aria-label="12 plus"><span class="stat__val" data-to="12" aria-hidden="true">12</span><span class="stat__plus" aria-hidden="true">+</span></p>
+            <p class="stat__label">Years of experience</p>
+          </li>
+          <li class="stat">
+            <p class="stat__num" aria-label="300 plus"><span class="stat__val" data-to="300" aria-hidden="true">300</span><span class="stat__plus" aria-hidden="true">+</span></p>
+            <p class="stat__label">Websites shipped</p>
+          </li>
+          <li class="stat">
+            <p class="stat__num" aria-label="30 plus"><span class="stat__val" data-to="30" aria-hidden="true">30</span><span class="stat__plus" aria-hidden="true">+</span></p>
+            <p class="stat__label">Clients</p>
+          </li>
+          <li class="stat">
+            <p class="stat__num" aria-label="10 plus"><span class="stat__val" data-to="10" aria-hidden="true">10</span><span class="stat__plus" aria-hidden="true">+</span></p>
+            <p class="stat__label">Countries</p>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Placeholder so the page can scroll. Section 3 goes here. -->
+      <section class="next" id="work"><p>Next section: Our approach (the Selected work section will own #work)</p></section>
+    </main>
+
+    <!-- Dims the page while the form is open -->
+    <div class="scrim" id="scrim"></div>
+
+    <!-- GSAP from the CDN, no npm. In WordPress these three become wp_enqueue_script calls. -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/Flip.min.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
